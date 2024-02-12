@@ -164,27 +164,64 @@
 					 \underline{Database Administratior (DBA)}
 		  \item \textbf{\underline{(*)Three Level Database Architecture:}}
 					 \begin{itemize}
+								\item Drawing in notebook
 								\item Purpose of this architecture is to \underline{seperate} users model from physical
 										  structure of the database
 								\item \textbf{External Level (External Schema):} The way users thnk about data.
 										  Ex. Name of students from Dr. Shims class, Courses Shim taught F22. 
 										  (*)Many number of External schema for a single database.
+								\item \textbf{Logical Level:} Middle mapping that shows independence between
+										  external and physical levels. Only (*)one logical schema as its the pairing 
+										  designs of the many tables. Includes 
+										  \underline{entities, attributes, relationships, semantics, etc.}. Supported
+										  by the internal model
 								\item \textbf{Internal Level:} The way data is actually stored 
 										  using \underline{data structures}
 										  and \underline{file organizations}. Only (*)one internal schema. Physical
 										  implementation of the database.
-								\item \textbf{Logical Level:} Middle mapping that shows independence between
-										  external and physical levels. Only (*)one logical schema as its the pairing 
-										  designs of the many tables. Includes 
-										  \underline{entities, attributes, relationships,semantics, etc.}. Supported
-										  by the internal model
 								\item This architecture creates good \underline{data independence} (Upper levels
 										  are unaffected by changes to the lower levels
-								\item \textbf{Logical Data Independence:} Immunity of external models
+								\item \textbf{(*)Logical Data Independence:} Immunity of external models
 										  to changes in the logical model
-								\item \textbf{Physical Data Independence:} Immunity of the logical model to changes in 
+								\item \textbf{(*)Physical Data Independence:} Immunity of the logical model to changes in 
 										  the internal model
 					 \end{itemize}
+		  \item \textbf{Entity Relationship Model:} Semantic model
+		  \item \textbf{Relational Model:} Record based model
+		  \item Object oriented model
+		  \item Object relational model
+		  \item Semi structured data model
+\end{itemize}
+
+\subsection*{Feb 8 2024}
+
+Chapter 3
+
+\begin{itemize}
+		  \item \textbf{Entity Relationship Model:} Allows the designer to express conceptual properties
+					 of the database in enterprise schema. Model describes 
+					 \underline{entities, attributes, relationships.}
+					 Uses its own ER Diagram.
+		  \item \textbf{Entity:} Object of interest: Person, place, event, object. Can be physcial or abstract
+		  \item \textbf{Entity Instance:} Represents particular object, person, class, student, etc.
+					 Ex (John Doe, 35, 504-26-8585)
+		  \item \textbf{Entity Type:} Representation of the data model of a category of entities. Described
+					 by its name and attributes. 
+		  \item \textbf{Entity Set:} Collection of entities of the same type
+		  \item \textbf{Attributes:} of an entity represent defining properties of entity type
+					 \begin{itemize}
+								\item \textbf{Simple:} (age) or \textbf{Composite:} (1. name = first name + last name, 
+										 2. address = street + city + state + zip)
+							   \item \textbf{Single Valued:} (age, SSN) or \textbf{Multi Valued [use double oval]:}
+										  (degree earned, color of car, email address)
+								\item \textbf{Stored:} (birthday) or \textbf{Derived [use dashed oval]:}
+										  (age)
+					 \end{itemize}
+		  \item An entity instance will have a value for each attribute. Ex (12345, Doe, John, CS, 65)
+		  \item \textbf{Domain:} Set of values permiteed for each attribute. Ex age:[16,70],
+					 GPA:[0,4.0], credits:[0,120]
+		  \item \textbf{Null:} No value, the values of some attributes for some instances may have this value.
+					 \underline{Databse should not leave attributes empty, use null}
 \end{itemize}
 
 \subsection*{X}
