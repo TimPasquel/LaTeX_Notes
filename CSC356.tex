@@ -221,13 +221,67 @@ Chapter 3
 		  \item \textbf{Domain:} Set of values permiteed for each attribute. Ex age:[16,70],
 					 GPA:[0,4.0], credits:[0,120]
 		  \item \textbf{Null:} No value, the values of some attributes for some instances may have this value.
-					 \underline{Databse should not leave attributes empty, use null}
+					 \underline{Databse should not leave attributes empty, use null}. DOES NOT MEAN 0, just 
+					 place holder
 \end{itemize}
 
-\subsection*{X}
+\subsection*{Feb 15 2024}
 
 \begin{itemize}
-		  \item \textbf{}
+		  \item \textbf{Key:} minimal subset (\underline{no proper subset of the key attributes
+					 is a unique identifier}) of attributes that uniquely identify an entity. Ex.
+					StuID is a key for the Student entity
+		 \item \textbf{Candidate Key:} The several keys an entity can have. Keys potenialy used as the key
+		 \item \textbf{Primary Key:} One key selected to uniquely identify entities. Ex. Car VIN
+		 \item \textbf{Alternate Keys:} All of the other keys for an entity. Ex. Car model, year, make, etc. 
+		 \item \textbf{Super Key:} A non minimal key. Ex. any key that has the primary key (unique
+					identifier key), plus other identifiers. \underline{Default superkey:} the set of
+					 all attributes
+		 \item \textbf{Composite Key:} A key consisting of more than one attribute
+		 \item \underline{(*)No primary key value can be null}
+		 \item \textbf{Foreign Key:} Primary key of another relation, pointer to another relation.
+					A key that can be used in multiple tables. Ex. \underline{Inventory table} has column: Vender-Code,
+					 \underline{Vendor table} has column Venter-Code as well.
+		 \item A table is a set of rows/specific objects/tuples
+		 \item \textbf{Relationships:} Connections or interactions among entity instances
+		 \item \textbf{Relationship Type:} The common properties of certain relationships 
+		 \item \textbf{Relationship Set:} The cellection of relationships of that type
+		 \item \textbf{(*)Degree:} The number of participating entity types (Unary - 1, Binary - 2, Tirnary - 3).
+					(*)Generally keep to \underline{2}. Need to specify:
+					 \begin{itemize}
+								\item Cardinality
+								\item Connectivity
+								\item Mandatory/Optional
+					 \end{itemize}
+		  \item \textbf{Relationship set of degree n:} A subset of an n-ary relation of the form
+		  \item \textbf{(*)Cardinality:} The number of entities to which another entity can map under
+					 that relationship (min, max)
+		  \item \textbf{Connectivity:} One to one (1:1), one to many (1:N), many to many (N:N)
+\end{itemize}
+
+\subsection*{Feb 15 2024}
+
+\begin{itemize}
+			\item \textbf{(*)Participation Constraints (Uese the min values of cardinarlity):}
+					\begin{itemize}
+							\item \underline{Total Participation:} Every memeber of entity set must participate
+							in relationship, uses double
+							\item \underline{Partial Participation:} Some members of entity set may not participate
+							in the relationship, uses single line
+					\end{itemize}
+			\item \textbf{Roles:} indicate recursive relationship, the same 2 entities are realted in 
+						2 different ways
+			\item When data is needed to be stored, we would not be interested in data unless we had a 
+			related entity already in the database. Ex. dont need sales order data unless we had 
+			customer data. 
+			\item \textbf{Strong Entities:} Entity Y can not exist without some X entity. X is a strong entity
+			\item \textbf{Weak Entities:} In the example above, Y is the weak entity. Y must then also
+			have total participation in its relationaship set with X
+			\item \textbf{Identifying Relationship:} The relationship type that relates a weak entity type to its 
+			owner.
+			\item \textbf{Partial Key (Discriminator):} Weak entity type normally has this, 
+			the set of attributes that can 
+			uniquely identify weak entities that are related to the same owner entity
 \end{itemize}
 
 \end{document}
