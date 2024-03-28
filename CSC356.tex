@@ -259,7 +259,7 @@ Chapter 3
 		  \item \textbf{Connectivity:} One to one (1:1), one to many (1:N), many to many (N:N)
 \end{itemize}
 
-\subsection*{Feb 15 2024}
+\subsection*{Feb 20 2024}
 
 \begin{itemize}
 			\item \textbf{(*)Participation Constraints (Uese the min values of cardinarlity):}
@@ -283,6 +283,238 @@ Chapter 3
 			the set of attributes that can 
 			uniquely identify weak entities that are related to the same owner entity
 \end{itemize}
+
+\subsection*{Feb 22 2024}
+
+Chapter 4
+
+\begin{itemize}
+		\item Relational model removes details from applications providing \underline{a logical view}
+			and true \underline{data independence}
+		\item Relational model is based on the \underline{mathmatical notion} of a relation.
+		\item Relational model is simple making it \underline{easy to underline} at a intuitive level. Allows
+			speration of \underline{conceptual and physical level}. It is not nessesary to be familiar with 
+			storage stuctures. \underline{Most popular model}.
+		\item \textbf{Relation:} Physically represented as a \underline{table or 2D array}
+		\item \textbf{Domain:} Of an attribute is the set of allowable values for the attribute
+		\item \textbf{Row:} Each row of the table is an individual \underline{record or entity instance}. Also 
+			called a \underline{tuple}
+		\item \textbf{Columns:} Attributes of a table
+		\item \underline{(*)Table:}
+			\begin{itemize}
+				\item Each cell has only one value 
+				\item Each column has a distinct name
+				\item Values in column all come from same domain
+				\item Each tuple/row is distinct
+				\item Order of tuples or row is immaterial
+				\item When table structure is chosen, order of elements in rows must match order of column names
+			\end{itemize}
+\end{itemize}
+
+\subsection*{Feb 27 2024}
+
+\begin{itemize}
+		\item \textbf{Number of Columns:} in a table is the \underline{degree} of relationship
+		\item \textbf{Number of Rows:} in a table is the \underline{cardinality} of relationship. (*) This 
+			term is different from the E.R diagram term
+		\item Earlier systems (hierarchical and network model) were based on 
+			\underline{file systems} and did not provide \underline{data independence}
+		\item The \underline{relational model} provided a logical view and \underline{true data independence}
+		\item The relational model is \underline{simple and easy to understand} at the intuitive level.
+		\item Relational model allows separation of the \underline{conceptual and physical levels}
+		\item Realtional model data operations are also easy to express making it so you do not need to know
+			data structures or file systems.
+		\item \textbf{(*)Integrity Constraints (IC):} rules or restrictions that apply to all instances
+			of the database. \underline{Database management system} enforces these rules to ensure each 
+			entry is a legal instance
+		\item \textbf{(*)Key constraints:} Minimal subset of fields is a unique identifier for the tuple.
+			(*)Every table that you create should have a key, no table can exsist without a key.
+		\item \textbf{(*)Domain constraints:} Value of each attribute, A must be an atomic value from 
+			the domain, dom(A). Ex char(9), INT, Decimal(3)
+		\item \textbf{(*)Entity Integrity Constraints:} No primary key value can be null.
+		\item \textbf{(*)Referentail Integrity Constraints:} If a foreign key exsists in a realtionship, then either 
+			the foreign key value must match the primary key value of some tuple in its home relationship or 
+			foreign key must be null
+		\item Relation schema gives the table name for each relation and column headings for each of its 
+			attributes. Logical model schema is the set of all these schemas for database
+		\item \textbf{Relational Algebra:} Example of procedural (prescriptive) language, user tells the 
+			system exactly how to manipulate the data
+		\item \textbf{Relational Calculus/SQL (Structured Query Language):} Nonprocedural languages,
+			the user states what data is needed but not exactly how it is to be located
+		\item Both relational algebra and relational calculus are formal non user friendly languages. Not 
+			implemented in their native form in database mang. systems. Both have been used as the basis
+			for higher level data manipulation languages such as \underline{SQL}
+\end{itemize}
+
+\subsection*{Feb 29 2024}
+
+\begin{itemize}
+		\item A table must have some kind of key
+		\item \underline{Mapping ER Model to Relational Schema (Examples in the Notes)}
+			\begin{enumerate}
+				\item \textbf{Strong Entity Sets:} become relations represented by base tables. They are \underline{
+					non composite, single valued attributes} and become attributes of the 
+					relations (column headings of table)
+		  		\item ER attibutes that are \underline{composites}, make a column for each of the single attributes
+					that form the compsite, or leave the composite as a single attribute.
+				\item For \underline{(*)multivalued attributes}, remove them from the table, create a 
+					seperate realtion
+					and put the primary key of the entity with the multivalued attribute. \underline{(*)Decompose} the 
+					table into pieces and multiple tables. Ex. Student(\underline{stuID}, name, major, credits) 
+					and stuMajors(\underline{stuID}, \underline{major}). You can also make additional columns for
+					multiple value attributes. Ex. Studnet(\underline{stuID}, name, major1, major2 
+					[If none, null, not good to do], major3, credits)
+		  		\item \textbf{Weak Entity Sets:} use combination of owners primary key and the discriminat as the
+					key. Ex. Evaluation(\underline{facID (from the strong entity)},\underline{date (weak)},
+					\underline{rater (weak)}, rating)
+		  		\item \textbf{Relationship Set:} represented in tables by foreign keys or sperate relationship table,
+					depending on cardinality and degree of relationship
+					\begin{itemize}
+						\item If A and B are strong entities, and binary relationship. \underline{A:B is one to many}.
+							Place the key of A (1 side) in the table for B (many side), where it becomes a
+							foreign key. (*) The opposite way doesnt work. 
+						\item \underline{One to One}, put the key of either relation in the other table to show 
+							connection. Put key of A in B table or vise versa, NOT BOTH. 
+						\item \textbf{Binary Relationship:} that is \underline{many to many}, connection must be 
+						show by a separate relationship table. The table must contain the primary key of the entities
+					\end{itemize}
+				\item \textbf{Ternary or n-ary Relationship:} construct table for relationship for the primary keys of
+					the related entities 
+				\item \textbf{Recursive Relationship:} depends on cardinarlity. If many to many, create relationship
+					table. If 1 to 1 or 1 to many, the foreign key mechanism is used. 
+		  	\end{enumerate}
+\end{itemize}
+
+\subsection*{Mar 21 2024}
+
+Chapter 5 SQL
+
+\begin{itemize}
+		\item \textbf{Relational Model:} proposed by E.F Cod in 1970
+		\item \textbf{SQL:} Language starting in 1974
+		\item \textbf{Oracle:} Commerical relational database management system 1970
+		\item \textbf{IBM's SQL/DS:} 1st relational database 1981
+		\item \underline{Many} versions of SQL, also the baseline for many stystems and continiously used, some
+			of the syntax may be different, but the overall is the same(*)
+		\item dont worry about exact companies and dates
+		\item \textbf{CREATE TABLE:} Command to create an empty table
+		\item \textbf{CREATE INDEX:} Command that declares the number of indexes for the table
+		\item \textbf{Index:} Used to speed up retrieval of records based on the value in one of more columns.
+			Most DBMS use \underline{B trees} or \underline{B+ trees} (Data structures) for indexes
+		\item Indexes speed up your search so that you do not retrieve information that you do not need
+		\item (*) Explain the concept of indexes as the data structures associated with them, what the adv. are.
+			You do \underline{not} need an index for every attributes because that would waste space
+		\item At the physical level, base tables and indexes are represented in files
+		\item User is unaware that indexes exsist, have no control over which index will be used in locating a
+			record
+		\item \textbf{CREATE VIEW:} Command to view the desired table. Creates a ``Virtual table'' and will 
+			\underline{not} be permanently stored
+		\item \textbf{Dynamic database definitions:} Feature of a relational database, can create new tables, 
+			add columns to old ones, create new indexes, define views, drop objects at any time
+		\item (*) Foreign key is a primary key of another table
+		\item \textbf{Examples:}
+			\begin{itemize}
+				\item CREATE TABLE [schema-name] base-table-name (colname datatype [column constraints]
+						[, colname datatype [column constraints]] ... [table constraints] [storage specifications]);
+				\item CREATE TABLE Customer (cno CHAR(3), balance NUMBER(5));
+				\item CREATE TABLE Employee(
+
+						SSN CHAR(9) NOT NULL,				CHAR(n) - fixed length string of length n
+
+						Name VARCHAR2(30) NOT NULL, 		VARCHAR2(n) - variable length string of max length n
+
+						AGE INT, DEFAULT 0
+
+						PRIMARY KEY(SSN)
+
+						);
+			  \item CREATE TABLE Works\_On(
+
+						ESSN CHAR(9) NOT NULL,
+
+						PNO INT NOT NULL,
+
+						HOURS DECIMAL(3,1) NOT NULL,      (3,1) - 3 digits, 1 after decimal Ex. 99.1
+
+						PRIMARYKEY(ESSN,PNO),
+
+						FOREIGN KEY(ESSN) REFERENCES EMPLOYEE(SSN),
+						
+						FOREIGN KEY(PNO) REFERENCES PROJECT(PNUMBER)
+
+						);			
+			\end{itemize}
+\end{itemize}
+
+\subsection*{Mar 26 2024}
+
+\begin{itemize}
+		\item Base table use user supplied name. \underline{No SQL Key words} can be used as the name, name
+			must be unique for the table
+		\item \textbf{Each Column:} Specific name unique in table, a data type
+		\item SQL statements are case insensitive, everything will be displayed in uppercase
+		\item (*) [Test will write SQL statements] Each line ends with a comma, except for the last, 
+			which ends in a semi colon
+		\item \textbf{Data Types:} Vary from DBMS to DBMS
+		\item \textbf{VARCHAR2 (n):} stores varying length strings with max size of n bytes. N to 4000 bytes
+		\item \textbf{CHAR (n):} stores fixed length strings, max size of 2000 bytes
+		\item \textbf{Fixed Point Numbers:} NUMBER (p, s). p - total number of digits, s - number of digits to
+	  		the right of the decimal point. For ints, s is omitted. Ex. NUMBER (6,2): 9999.99,
+			NUMBER(6): 999999	
+		\item \textbf{DATE:} default format ``dd-mon-yy'' (Ex. ``02-DEC-11''). (*)Month is 3 letters 
+		\item \textbf{FLOAT (p):} p is the number of bytes  
+		\item \textbf{Integrity Constraints:} DBMS enforces data correctness, allows only legal instances to be
+	  		created	
+		\item \textbf{CREATE TABLE command:} has optional constraints, column level in line constraints,
+	  		table level out of line constraints	
+		\item \textbf{Column Level constraints:} Sets column constraints such as NOT NULL, NULL, PRIMARY KEY,
+			FOREIGN KEY, REF, CHECK, DEFAULT
+		\item \textbf{Table Level constraints:} Sets table constraints such as primary key, foreign keys 
+		\item If primary key is not composite, possible to specify PRIMARY KEY as column constraint, add
+	  		PRIMARY KEY after the data type column. Ex. VARCHAR2 (6) PRIMARY KEY,	
+		\item \textbf{CHECK:} specifys conditions that the rows of the table cant violate, verifys that
+  			values provided for attributes are appropriate		
+		\item \textbf{DEFAULT:} specify defulat value for column, Ex. credits NUMBER(6) DEFAULT 0, 
+		\item We can optionally provide a name for a constraint, otherwise system wil provide a name. User defined
+	  		name is prefered	
+		\item Table constraints appear \underline{after} all the columns have been declared
+		\item If primary key is \underline{composite}, must be identified as a table constraint
+		\item \textbf{FOREIGN KEY:} Constraint requires that we identify the referenced table where the column
+			or column combination appears
+		\item \textbf{CONSTRAINT:} (*)must use this keywork for out of line constraint (Table level constraints), 
+			can be followed by an identifer. Ex. CONSTRAINT Class\_facID\_fk FOREIGN KEY(facId) REFERENCES (facdId)
+			ON DELETE CASCADE  
+		\item \textbf{ON DELETE CASCADE:} delete all class records for that faculty member
+		\item \textbf{ON DELETE SET NULL:} set the facId in the class value to null value
+		\item \textbf{UNIQUE:} can be used to specify that values in a combination of columns must be unique 
+		\item \textbf{} 
+\end{itemize}
+
+\subsection*{Feb 22 2024}
+
+\begin{itemize}
+		\item
+\end{itemize}
+
+\subsection*{Feb 22 2024}
+
+\begin{itemize}
+		\item
+\end{itemize}
+
+\subsection*{Feb 22 2024}
+
+\begin{itemize}
+		\item
+\end{itemize}
+
+\subsection*{Feb 22 2024}
+
+\begin{itemize}
+		\item
+\end{itemize}
+
+
 
 \end{document}
 
